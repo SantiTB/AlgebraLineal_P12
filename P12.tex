@@ -1,0 +1,352 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{halloweenmath}
+\usepackage{tabto}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\A}{\mathcal{A}}
+\newenvironment{tightcenter}{%
+    \setlength\topsep{0pt}
+    \setlength\parskip{0pt}
+    \begin{center}
+}{%  
+    \end{center}
+}
+\title{Trabajo Práctico 11 - Formas bilineales }
+\author{Santiago}
+\date{}
+\begin{document}
+    \maketitle
+    \begin{enumerate}
+        \item Decir cuáles de las siguientes aplicaciones $\A :\R^2 \times \R^2\to \R$ son bilineales.$\bigskull$
+            \begin{enumerate}
+                \item $\A((x_1,y_1),(x_2,y_2))=1$\\
+                    Por definición, una forma bilineal sobre un $\mathbb{K}$-espacio vectorial $V$(en este caso $\R^2$) es una función $\A:V\times V\to \mathbb{K}$ tal que:
+                    \begin{enumerate}
+                        \item $\A(\alpha u+v,w)=\alpha \A(u,w)+\A(v,w)$ \quad $ u,v,w\in V,\alpha \in \mathbb{K}$
+                        \item $\A(u,\alpha v+w)=\alpha \A(u,v)+\A(u,w)$ \quad $ u,v,w\in V,\alpha \in \mathbb{K}$
+                    \end{enumerate}
+                    Sean $u,v,w\in \R^2, \alpha \in \R$ tenemos que: $\A(\alpha u+v,w)=1$ por defición, mientras que $\alpha \A(u,w)+\A(v,w)=\alpha \cdot 1 + 1=\alpha +1$, con lo cual no se cumple la primer condición y por ende $\A$ no es una forma bilineal.
+                \item $\A((x_1,y_1),(x_2,y_2))=(x_1+y_1)^2-(x_1-y_1)^2$\\
+                    Sean $u=(u_1,u_2),v=(v_1,v_2),w=(w_1,w_2)\in \R^2, \alpha \in \R\to \A(\alpha u+v,w)=$
+                    \begin{align*}
+                        &=(\alpha (u_1,u_2)+(v_1,v_2),(w_1,w_2)) &&\text{Definición $u,v,w$}\\
+                        &=((\alpha u_1+v_1,\alpha u_2+v_2),(w_1,w_2)) &&\text{Suma vec y Producto por escalar}\\
+                        &=((\alpha u_1+v_1)+(\alpha u_2+v_2))^2-((\alpha u_1+v_1)-(\alpha u_2+v_2))^2 &&\text{Definición } \A\\
+                        &=4(\alpha u_1+v_1)(\alpha u_2+v_2) &&\text{Suma en }\R
+                    \end{align*}
+                    Por otra parte tenemos que $\alpha \A(u,w)+\A(v,w)=$
+                    \begin{align*}
+                        &=\alpha\A((u_1,u_2),(w_1,w_2))+\A((v_1,v_2),(w_1,w_2))&&\text{Definición }u,v,w\\
+                        &=\alpha((u_1+u_2)^2-(u_1-u_2)^2)+(v_1+v_2)^2-(v_1-v_2)^2&&\text{Definición }\A\\
+                        &=\alpha(4u_1u_2)+4v_1v_2&&\text{Suma en }\R
+                    \end{align*}
+                    Como no se cumple la primera condición, $\A$ no es una forma bilineal.
+                \item $\A((x_1,y_1),(x_2,y_2))=(x_1-y_1)^2+x_2y_2$\\
+                    Sean $u=(u_1,u_2),v=(v_1,v_2),w=(w_1,w_2)\in \R^2, \alpha \in \R\to \A(\alpha u+v,w)=$
+                    \begin{align*}
+                        &=(\alpha (u_1,u_2)+(v_1,v_2),(w_1,w_2)) &&\text{Definición $u,v,w$}\\
+                        &=((\alpha u_1+v_1,\alpha u_2+v_2),(w_1,w_2)) &&\text{Suma vec y Producto por escalar}\\
+                        &=((\alpha u_1+v_1)-(\alpha u_2+v_2))^2+w_1w_2 &&\text{Definición } \A\\
+                        &=2(\alpha u_1+v_1)(\alpha u_2+v_2)+w_1w_2
+                    \end{align*}
+                    Por el otro lado $\alpha \A(u,w)+\A(v,w)=$
+                    \begin{align*}
+                        &=\alpha\A((u_1,u_2),(w_1,w_2))+\A((v_1,v_2),(w_1,w_2))&&\text{Definición }u,v,w\\
+                        &=\alpha((u_1-u_2)^2+w_1w_2)+(v_1-v_2)^2+w_1w_2&&\text{Definición }\A
+                    \end{align*}
+                    En donde se ve que no son iguales, con lo cual $\A$ no es una forma bilineal.
+                \item $\A((x_1,y_1),(x_2,y_2))=x_1y_2-x_2y_1$\\
+                Sean $u=(u_1,u_2),v=(v_1,v_2),w=(w_1,w_2)\in \R^2, \alpha \in \R\to \A(\alpha u+v,w)=$
+                \begin{align*}
+                    &=(\alpha (u_1,u_2)+(v_1,v_2),(w_1,w_2)) &&\text{Definición $u,v,w$}\\
+                    &=((\alpha u_1+v_1,\alpha u_2+v_2),(w_1,w_2)) &&\text{Suma vec y Producto por escalar}\\
+                    &=(\alpha u_1+v_1)w_2+(\alpha u_2+v_2)w_1&&\text{Definición } \A\\
+                    &=\alpha(u_1w_2+u_2w_1)+v_1w_2+v_2w_1\\
+                    &=\alpha \A(u,w)+\A(v,w)&&\text{Definición }\A
+                \end{align*}
+                Se cumple la primera condición, ahora para la segunda:
+                Sean $u=(u_1,u_2),v=(v_1,v_2),w=(w_1,w_2)\in \R^2, \alpha \in \R\to \A(u,\alpha v+w)=$
+                \begin{align*}
+                    &=((u_1,u_2),\alpha (v_1,v_2)+(w_1,w_2)) &&\text{Definición $u,v,w$}\\
+                    &=((u_1,u_2),(\alpha v_1+w_1,\alpha v_2+w_2)) &&\text{Suma vec y Producto por escalar}\\
+                    &=u_1(\alpha v_2+w_2)+u_2(\alpha v_1+w_1)&&\text{Definición } \A\\
+                    &=\alpha(u_1v_2+u_2v_1)+u_1w_2+u_2w_1\\
+                    &=\alpha \A(u,v)+\A(u,w)&&\text{Definición }\A
+                \end{align*}
+                Como se cumplen las dos condiciones se puede afirmar que $\A$ es una forma bilineal.
+            \end{enumerate}
+        \item Sea $A\in\mathbb{K}^{m\times m}$ y sea $\A:\mathbb{K}^{m\times m}\times \mathbb{K}^{m\times m}\to \mathbb{K}$ dada por
+            \begin{center}
+                $\A(X,Y)=tr(Y^tAX)$\quad para $X,Y\in\mathbb{K}^{m\times m}$
+            \end{center}
+            Probar que $\A$ es una forma bilineal.\\
+            Sea $X,Y,Z\in \mathbb{K}^{m\times m}$ y $\alpha \in \mathbb{K}\to \A(\alpha X+Y,Z)=$
+            \begin{align*}
+                &=tr(Z^tA(\alpha X+Y))&&\text{Definición }\A\\
+                &=tr(Z^tA\alpha X+Z^tAY)&&\text{Distributividad}\\
+                &=tr(Z^tA\alpha X)+tr(Z^tAY)&&\text{Propiedades de la traza}\\
+                &=\alpha tr(Z^tAX)+tr(Z^tAY)&&\text{Propiedades de la traza}\\
+                &=\alpha\A(X,Z)+\A(Y,Z)&&\text{Definición }\A
+            \end{align*}
+            Cumple la primer condición. Ahora $\A(X,\alpha Y+Z)=$
+            \begin{align*}
+                &=tr((\alpha Y+Z)^tAX)&&\text{Definición }\A\\
+                &=tr(((\alpha Y)^t+Z^t)AX)&&\text{Propiedad de la traspuesta}\\
+                &=tr((\alpha Y)^tAX+Z^tAX)&&\text{Distributividad}\\
+                &=tr((\alpha Y)^tAX)+tr(Z^tAX)&&\text{Propiedades de la traza}\\
+                &=\alpha tr(Y^tAX)+tr(Z^tAX)&&\text{Propiedades de la traza y traspuesta}\\
+                &=\alpha\A(X,Y)+\A(X,Z)&&\text{Definición }\A
+            \end{align*}
+            Al cumplirse las dos condiciones, $\A$ es una forma bilineal.
+        \item Sea $V$ un $\mathbb{K}$-espacio vectorial. Probar que $Bil(V)$ es un $\mathbb{K}$-espacio vectorial.
+        \item Decir si las siguientes formas bilineales son simétricas:
+            \begin{enumerate}
+                \item $\A\in Bil(\R^2)$ dada por $\A((x_1,y_1),(x_2,y_2))=3x_1x_2+2x_1y_2+2y_1x_2+y_1y_2$
+                    Para que una forma bilineal sea simétrica se debe cumplir $\A(u,v)=\A(v,u)\forall u,v$
+                    \begin{align*}
+                        \A((x_1,y_1),(x_2,y_2))&=3x_1x_2+2x_1y_2+2y_1x_2+y_1y_2&&\text{Definición}\\
+                        &=3x_2x_1+2x_2y_1+2y_2x_1+y_2y_1&&\text{Conmutatividad suma y prod}\\
+                        &=\A((x_2,y_2)(x_1,y_1))&&\text{Definición}
+                    \end{align*}
+                    Por lo tanto, $\A$ es simétrica.
+                \item $\A\in Bil(\R^2)$ dada por $\A((x_1,y_1),(x_2,y_2))=x_1x_2+4x_1y_2-3y_1x_2$
+                    \begin{align*}
+                        \A((x_1,y_1),(x_2,y_2))&=x_1x_2+4x_1y_2+3y_1x_2&&\text{Definición}\\
+                        \A((x_2,y_2),(x_1,y_1))&=x_2x_1+4x_2y_1+3y_2x_1&&\text{Definición}\\
+                    \end{align*}
+                    Se ve que $\A$ no es simétrica.
+                \item $\A\in Bil(\R^3)$ dada por $\A((x_1,y_1,z_1),(x_2,y_2,z_2))=x_1x_2+y_1y_2+z_1z_2$
+                    \begin{align*}
+                        A((x_1,y_1,z_1),(x_2,y_2,z_2))&=x_1x_2+y_1y_2+z_1z_2&&\text{Definición}\\
+                        &=x_2x_1+y_2y_1+z_2z_1&&\text{Conmutatividad}\\
+                        &=\A((x_2,y_2,z_2),(x_1,y_1,z_1))&&\text{Definición}
+                    \end{align*}
+                    Por ende, $\A$ es simétrica.
+            \end{enumerate}
+        \item Para las formas bilineales simétricas del punto anterior, escribir una representación matricial en cualquier base que no sea la canónica del espacio vectorial involucrado. Hallar su rango.
+            \begin{itemize}
+                \item[(a)] Como estoy trabajando en $\R^2$, tomo de base a $B=\{(1,0),(0,-1)\}$. De la \textbf{Definición 9.6} se tiene que $A_{ij}=\A(b_j,b_i)$ en donde $A=[\A]_B\to$
+                    $\begin{cases} 
+                        A_{11}=\A((1,0),(1,0))=3 \\
+                        A_{12}=\A((0,-1),(1,0))=-2 \\
+                        A_{21}=\A((1,0),(0,-1))=-2 \\
+                        A_{22}=\A((0,-1),(1,0))=1 \\
+                    \end{cases}
+                    \to A=\begin{pmatrix}
+                        3 & -2 \\
+                        -2 & 1 
+                    \end{pmatrix}$
+                    \quad Se ve que $rg(A)=2$
+                \item[(c)] En este caso como base elijo a $B={(1,0,0),(1,1,0),(1,1,1)}$. Usando la misma definición que en el caso anterior:
+                    \begin{center}
+                        $A_{11}=\A((1,0,0),(1,0,0))=1$\quad$A_{21}=\A((1,0,0),(1,1,0))=1$\quad$A_{31}=\A((1,0,0),(1,1,1))=1$\\
+                        $A_{12}=\A((1,1,0),(1,0,0))=1$\quad$A_{22}=\A((1,1,0),(1,1,0))=2$\quad$A_{32}=\A((1,1,0),(1,1,1))=2$\\
+                        $A_{13}=\A((1,1,1),(1,0,0))=1$\quad$A_{23}=\A((1,1,1),(1,1,0))=2$\quad$A_{33}=\A((1,1,1),(1,1,1))=3$\\
+                        $\to A=\begin{pmatrix}
+                            1 & 1 & 1 \\
+                            1 & 2 & 2 \\
+                            1 & 2 & 3 
+                        \end{pmatrix}$\quad $rg(A)=3$
+                    \end{center}
+            \end{itemize}
+        \item Sea $\A\in Bil(V)$ simétrica. Probar que $\A$ es no degenerada si y sólo si $V^\perp = \{0\}$. Recordar que si $S$ es un subconjunto de $V$, entonces
+            \begin{tightcenter}    
+                $S^\perp = \{v\in V:\A(v,s)=0$\quad$\forall s\in S\}$
+            \end{tightcenter}
+            $(\Rightarrow):$\\
+            $\A\in Bil(V)$ es simétrica y no degenerada $\Rightarrow \forall v\in V, v\neq \vec{0},\exists u\in V/\A(u,v)=\A(v,u)\neq 0\Rightarrow \A(s,v)=0 \Leftrightarrow s=\vec{0}\Rightarrow V^\perp =\{0\}$\\
+            $(\Leftarrow):$\\
+            $\A\in Bil(V)$ es simétrica y $V^\perp =\{0\}\Rightarrow\A(s,v)=0 \Leftrightarrow s=\vec{0}\Rightarrow \A(u,v)=\A(v,u)=0\Leftrightarrow u=\vec{0}\\\Rightarrow \forall v\in V \exists u\in V-\{0\}/\A(u,v)\neq 0\Rightarrow \A$ es no degenerada.
+        \item Sea $\A\in Bil(\R^3)$ dada por
+            \begin{center}
+                $\A((x_1,y_1,z_1),(x_2,y_2,z_2))=3x_1x_2+4x_1y_2+x_1z_2+4y_1x_1+y_1y_2+6y_1z_2+z_1x_2+2z_1y_2+z_1z_2$
+            \end{center}
+            \begin{enumerate}
+                \item ¿Es simétrica $\A$?¿Es antisimétrica?\\
+                    Sea $u=(0,1,0)$ y $v=(0,0,1)\Rightarrow \A(u,v)=6$. Mientras que $\A(v,u)=2$. Se concluye que no es simétrica ni antisimétrica.
+                \item Hallar $\A_{sim}$ y $\A_{ant}$ en $Bil(\R^3)$ tales que $\A=\A_{sim}+A_{ant}$\\
+                    De la \textbf{Proposición 9.18} y su demostración obtenemos que $\A_{sim}:=\frac{1}{2}(\A+\A^t)$ y $\A_{ant}:=\frac{1}{2}(\A-\A^t)$. Haciendo los cálculos se llega a
+                    \begin{tightcenter}
+                        $\A_{sim}=3x_1x_2+2x_1y_2+2x_2y_1+x_1z_2+x_2z_1+2x_1y_1+2x_2y_2+y_1y_2+4y_1z_2+4y_2z_1+z_1z_2$\\
+                        $\A_{ant}=2x_1y_2-2x_2y_1+2x_1y_1-2x_2y_2+2y_1z_2-2y_2z_1$
+                    \end{tightcenter}
+            \end{enumerate}
+        \item Sea $B=\{u,v\}$ una base de $\R^2$ y sea $\A\in Bil(\R^2)$ dada por
+            \begin{center}
+                $\A(u,u)=\A(v,v)=0$\quad$\A(u,v)=-\A(v,u)=1$
+            \end{center}
+            Probar que $\A(x,x)=0$ para todo $x\in V$ y que $\A$ es no degenerada.\\
+            La representación matricial de $\A$ en la base $B$ queda determinada por:\\
+            $\begin{cases} 
+                A_{11}=\A(u,u)=0 \\
+                A_{12}=\A(v,u)=-1 \\
+                A_{21}=\A(u,v)=1 \\
+                A_{22}=\A(v,v)=0 \\
+            \end{cases}
+            \to A=\begin{pmatrix}
+                0 & -1 \\
+                1 & 0 
+            \end{pmatrix}$
+            \quad $rg(A)=2\Rightarrow \A$ es no degenerada.\\
+            Usando la ecuación \textbf{9.1}:
+            \begin{tightcenter}
+                $\A(x,x)=\begin{pmatrix}
+                    x & x 
+                \end{pmatrix}
+                \begin{pmatrix}
+                    0 & -1 \\
+                    1 & 0 
+                \end{pmatrix}
+                \begin{pmatrix}
+                    x \\
+                    x 
+                \end{pmatrix}=0$
+            \end{tightcenter}
+        \item Sea $\A\in Bil(\R^2)$ dada por
+            \begin{center}
+                $\A((x_1,y_1),(x_2,y_2))=2x_1x_2+x_1y_2+y_1x_2$
+            \end{center}
+            Hallar su forma cuadrática asociada.\\
+            De la \textbf{Definición 9.19} tenemos que
+            \begin{tightcenter}
+                $Q:V\to \mathbb{K}/Q(v)=\A(v,v)$
+            \end{tightcenter}
+            es la forma cuadrática asociada a una forma bilineal simétrica. Ya sabemos que es bilineal por el enunciado y además
+            \begin{tightcenter}
+                $\A((x_1,y_1),(x_2,y_2))=2x_1x_2+x_1y_2+y_1x_2=2x_2x_1+x_2y_1+y_2x_1=\A((x_2,y_2),(x_1,y_1))$\\
+                $\to Q(x,y)=2x^2+2xy$
+            \end{tightcenter}
+        \item Para cada una de las siguientes formas cuadráticas sobre $\R^2$, hallar la forma bilineal simétrica asociada y representarla matricialmente en la base canónica.
+            \begin{enumerate}
+                \item $Q(x,y)=\alpha x^2$ para $\alpha\in\R$\\
+                    De la \textbf{Proposición 9.21} se sabe que
+                    \begin{tightcenter}
+                        $\A_{sim}(u,v)=\frac{1}{2}(Q(u+v)-Q(u)-Q(v))$
+                    \end{tightcenter}
+                    \begin{align*}
+                        \A_{sim}((x_1,y_1),(x_2,y_2))&=\tfrac{1}{2}[Q(x_1+x_2,y_1+y_2)-Q(x_1,y_1)-Q(x_2,y_2)]\\
+                        &=\tfrac{1}{2}[\alpha(x_1+x_2)^2-\alpha x_1^2-\alpha x_2^2]\\
+                        &=\alpha x_1x_2\\
+                    \end{align*}
+                    \begin{tightcenter}
+                        $\begin{cases} 
+                            A_{11}=\A((1,0),(1,0))=\alpha \\
+                            A_{12}=\A((0,1),(1,0))=0 \\
+                            A_{21}=\A((1,0),(0,1))=0 \\
+                            A_{22}=\A((0,1),(0,1))=0 \\
+                        \end{cases}
+                        \to A=
+                        \begin{pmatrix}
+                            \alpha & 0 \\
+                            0 & 0 
+                        \end{pmatrix}$
+                    \end{tightcenter}
+                \item $Q(x,y)=\alpha y^2$\\
+                    Es un caso muy similar al anterior. Se llega a:
+                    \begin{tightcenter}
+                        $\A_{sim}((x_1,y_1),(x_2,y_2))=\alpha y_1y_2\quad A=
+                        \begin{pmatrix}
+                            0 & 0 \\
+                            0 & \alpha 
+                        \end{pmatrix}
+                        $
+                    \end{tightcenter}
+                \item $Q(x,y)=\alpha xy$ para $\alpha\in\R$
+                    \begin{align*}
+                        \A_{sim}((x_1,y_1),(x_2,y_2))&=\tfrac{1}{2}[Q(x_1+x_2,y_1+y_2)-Q(x_1,y_1)-Q(x_2,y_2)]\\
+                        &=\tfrac{1}{2}[\alpha(x_1+x_2)(y_1+y_2)-\alpha x_1y_1-\alpha x_2y_2]\\
+                        &=\tfrac{\alpha}{2}[x_1y_2+x_2y_1]\\
+                    \end{align*}
+                    \begin{tightcenter}
+                        $\begin{cases} 
+                            A_{11}=\A((1,0),(1,0))=0 \\
+                            A_{12}=\A((0,1),(1,0))=\tfrac{\alpha}{2} \\
+                            A_{21}=\A((1,0),(0,1))=\tfrac{\alpha}{2} \\
+                            A_{22}=\A((0,1),(0,1))=0 \\
+                        \end{cases}
+                        \to A=
+                        \begin{pmatrix}
+                            0 & \tfrac{\alpha}{2} \\
+                            \tfrac{\alpha}{2} & 0 
+                        \end{pmatrix}$
+                    \end{tightcenter}
+                \item $Q(x,y)=2x^2-\tfrac{1}{3}xy$\\
+                    Con el mismo proceso que los casos anteriores se llega a:
+                    \begin{tightcenter}
+                        $\A_{sim}((x_1,y_1),(x_2,y_2))=2x_1x_2-\tfrac{1}{6}(x_1y_2+x_2y_1)\quad A=
+                        \begin{pmatrix}
+                            2 & -\tfrac{1}{6} \\
+                            -\tfrac{1}{6} & 0 
+                        \end{pmatrix}$
+                    \end{tightcenter}
+            \end{enumerate}
+        \item Probar que:
+            \begin{enumerate}
+                \item $Q(x,y)=x^2-4xy+5y^2$ es una forma cuadrática definida positiva sobre $\R^2$\\
+                    Se debe cumplir que $Q(x,y)>0\quad\forall(x,y)\in\R^2$. Tenemos que $Q(x,y)=x^2-4xy+5y^2=(x-2y)^2+y^2>0\Rightarrow Q$ es definida positiva.
+                \item $Q(x,y,z)=7x^2+4xy+y^2-8xz-3z^2$ es una forma cuadrática indefinida sobre $\R^3$\\
+                    $\begin{cases} 
+                        Q(1,1,1)=7+4+1-8-3=1>0\\
+                        Q(1,-2,1)=7-8+4-8-3=-8<0
+                    \end{cases}
+                    \to Q$ es indefinida.
+                \item $Q(x,y,z)=-x^2-2y^2-3z^2$ es una función cuadrática definida negativa sobre $\R^3$\\
+                    $Q(x,y,z)=-(x^2+2y^2+3z^2)<0\quad \forall (x,y,z)\in\R^3\Rightarrow Q$ es definida negativa.
+            \end{enumerate}
+        \item Sea $V$ un $\R$-EV y $Q$ una forma cuadrática sobre $V$ tal que $A$ es la matriz que representa en una base de $B$ (fija) de $V$. Probar que si $\lambda$ es un autovalor de $A$, entonces existe un autovector $v$ asociado a $\lambda$ tal que
+            \begin{tightcenter}
+                $Q(v)=\lambda\|v\|^2$
+            \end{tightcenter}
+            Deducir que:
+            \begin{enumerate}
+                \item Si $Q$ es definida positiva, entonces todos los autovalores de $A$ son positivos.\\
+                    Si $Q$ es definida positiva $\Rightarrow \lambda\|v\|^2>0\quad\forall v\neq\vec{0}\Rightarrow \lambda>0$
+                \item Si $Q$ es definida negativa, entonces todos los autovalores de $A$ son negativos.\\
+                    Si $Q$ es definida negativa $\Rightarrow \lambda\|v\|^2<0\quad\forall v\neq\vec{0}\Rightarrow \lambda<0$
+                \item Si $Q$ es indefinido, entonces $A$ tiene autovalores positivos y negativos.
+                \item Analizar si vale la recíproca en alguno de los casos anteriores.
+            \end{enumerate}
+        \item Mostrar que la forma cuadrática en $\R^3$ asociada a la matriz
+            \begin{tightcenter}
+                $A=
+                \begin{pmatrix}
+                    -1 & 0 & 0\\
+                    0 & -3 & 2\\
+                    0 & 2 & -3
+                \end{pmatrix}$
+            \end{tightcenter}
+            es definida negativa.
+            \begin{align*}
+                Q(v)&=
+                \begin{pmatrix}
+                    x & y & z    
+                \end{pmatrix}
+                \begin{pmatrix}
+                    -1 & 0 & 0\\
+                    0 & -3 & 2\\
+                    0 & 2 & -3
+                \end{pmatrix}
+                \begin{pmatrix}
+                    x\\ y\\ z
+                \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    x & y & z
+                \end{pmatrix}
+                \begin{pmatrix}
+                    -x \\ -3y +2z \\ 2y -3z
+                \end{pmatrix}\\
+                &=-x^2-3y^2+2yz+2yz-3z^2\\
+                &=-x^2-3y^2+4yz-3z^2\\
+                &=-x^2-2(y-z)^2-y^2-z^2\\
+                &=-(x^2+2(y-z)^2+y^2+z^2)<0\quad \forall(x,y,z)\in \R^3-\{\vec{0}\}\\
+                &\Rightarrow Q \text{ es definida negativa}
+            \end{align*}
+    \end{enumerate}
+\end{document}
